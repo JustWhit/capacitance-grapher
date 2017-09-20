@@ -44,7 +44,7 @@ public class DataGrapher {
 
 	private static void checkFilesPresent(final String... args) {
 		if (args == null || args.length != 2) {
-			System.out.println("### expecting a file to notes file to parse, and the entire log");
+			System.out.println("### expecting two files, in order: notes and *.log");
 			System.exit(-1);
 		}
 	}
