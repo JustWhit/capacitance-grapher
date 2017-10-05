@@ -2,12 +2,12 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<groupId>com.smilanko.smartbelt.data.grapher</groupId>
-	<artifactId>data-grapher</artifactId>
+	<groupId>com.smilanko.smartbelt.capacitance.grapher</groupId>
+	<artifactId>capacitance-grapher</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
-	<name>data-grapher</name>
+	<name>capacitance-grapher</name>
 	<url>http://maven.apache.org</url>
 
 	<properties>
@@ -38,7 +38,7 @@
 					<finalName>${project.artifactId}</finalName>
 					<archive>
 						<manifest>
-							<mainClass>com.smilanko.smartbelt.data.grapher.DataGrapher</mainClass>
+							<mainClass>com.smilanko.smartbelt.capacitance.grapher.CapacitanceGrapher</mainClass>
 						</manifest>
 					</archive>
 					<descriptorRefs>

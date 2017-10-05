@@ -1,4 +1,4 @@
-package com.smilanko.smartbelt.data.grapher.domain;
+package com.smilanko.smartbelt.capacitance.grapher.domain;
 
 import java.util.ArrayList;
 import java.util.List;

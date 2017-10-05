@@ -1,17 +1,17 @@
-package com.smilanko.smartbelt.data.grapher.processing;
+package com.smilanko.smartbelt.capacitance.grapher.processing;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import com.smilanko.smartbelt.data.grapher.common.DataGrapherConstants;
-import com.smilanko.smartbelt.data.grapher.common.DataGrapherLogParser;
-import com.smilanko.smartbelt.data.grapher.domain.BenchSet;
-import com.smilanko.smartbelt.data.grapher.domain.LiftPeakToRest;
-import com.smilanko.smartbelt.data.grapher.domain.LiftStartToPeak;
+import com.smilanko.smartbelt.capacitance.grapher.common.CapacitanceGrapherConstants;
+import com.smilanko.smartbelt.capacitance.grapher.common.CapacitanceGrapherLogParser;
+import com.smilanko.smartbelt.capacitance.grapher.domain.BenchSet;
+import com.smilanko.smartbelt.capacitance.grapher.domain.LiftPeakToRest;
+import com.smilanko.smartbelt.capacitance.grapher.domain.LiftStartToPeak;
 
-public class DataGrapherDataExtractor {
+public class CapacitanceGrapherDataExtractor {
 
-	private DataGrapherDataExtractor() {
+	private CapacitanceGrapherDataExtractor() {
 		// singleton
 	}
 
@@ -22,13 +22,13 @@ public class DataGrapherDataExtractor {
 		for (int i = 0; i < notesLines.size(); i++) {
 			final String setStartLine = notesLines.get(i);
 			final BenchSet benchSet = new BenchSet();
-			if (setStartLine.endsWith(DataGrapherConstants.SET_START)) {
-				benchSet.setSetStartSample(DataGrapherLogParser.retreiveSampleFromNotesLine(setStartLine));
+			if (setStartLine.endsWith(CapacitanceGrapherConstants.SET_START)) {
+				benchSet.setSetStartSample(CapacitanceGrapherLogParser.retreiveSampleFromNotesLine(setStartLine));
 				// loop again to find when the bench set ends
 				for (int reLooper = i; reLooper <= notesLines.size(); reLooper++) {
 					final String setEndLine = notesLines.get(reLooper);
-					if (setEndLine.endsWith(DataGrapherConstants.SET_END)) {
-						benchSet.setSetEndSample(DataGrapherLogParser.retreiveSampleFromNotesLine(setEndLine));
+					if (setEndLine.endsWith(CapacitanceGrapherConstants.SET_END)) {
+						benchSet.setSetEndSample(CapacitanceGrapherLogParser.retreiveSampleFromNotesLine(setEndLine));
 						i = reLooper;
 						break;
 					}
@@ -47,24 +47,24 @@ public class DataGrapherDataExtractor {
 			final int sampleEnd = benchSet.getSetEndSample();
 			for (int i = 0; i < notesLines.size(); i++) {
 				final String currentLine = notesLines.get(i);
-				final int currentSample = DataGrapherLogParser.retreiveSampleFromNotesLine(currentLine);
-				if (currentLine.endsWith(DataGrapherConstants.LIFT_START)) {
+				final int currentSample = CapacitanceGrapherLogParser.retreiveSampleFromNotesLine(currentLine);
+				if (currentLine.endsWith(CapacitanceGrapherConstants.LIFT_START)) {
 					if (currentSample >= sampleStart && currentSample <= sampleEnd) {
 						// add a lift start to peak entry
 						final LiftStartToPeak liftStartToPeak = new LiftStartToPeak();
 						liftStartToPeak.setLiftStart(currentSample);
 						// set the next value as the lift peak
-						final int nextSample = DataGrapherLogParser.retreiveSampleFromNotesLine(notesLines.get(i + 1));
+						final int nextSample = CapacitanceGrapherLogParser.retreiveSampleFromNotesLine(notesLines.get(i + 1));
 						liftStartToPeak.setLiftPeak(nextSample);
 						benchSet.addToLiftStartToPeakCollection(liftStartToPeak);
 					}
-				} else if (currentLine.endsWith(DataGrapherConstants.LIFT_PEAK)) { 
+				} else if (currentLine.endsWith(CapacitanceGrapherConstants.LIFT_PEAK)) { 
 					if (currentSample >= sampleStart && currentSample <= sampleEnd) {
 						// add a lift rest to peak entry
 						final LiftPeakToRest liftPeakToRest = new LiftPeakToRest();
 						liftPeakToRest.setLiftPeak(currentSample);
 						// set the next value as the lift rest
-						final int nextSample = DataGrapherLogParser.retreiveSampleFromNotesLine(notesLines.get(i + 1));
+						final int nextSample = CapacitanceGrapherLogParser.retreiveSampleFromNotesLine(notesLines.get(i + 1));
 						liftPeakToRest.setLiftRest(nextSample);
 						benchSet.addToLiftPeakToRestCollection(liftPeakToRest);
 					}
@@ -78,7 +78,7 @@ public class DataGrapherDataExtractor {
 		for (final BenchSet bench : benchSets) {
 			for (int i = 1; i < logLines.size(); i++) {
 				final String logLine = logLines.get(i);
-				final int sample = DataGrapherLogParser.retreiveSampleFromLogFile(logLine);
+				final int sample = CapacitanceGrapherLogParser.retreiveSampleFromLogFile(logLine);
 				if (sample >= bench.getSetStartSample() && sample <= bench.getSetEndSample()) {
 					bench.addToSetLineCollection(logLine);
 				}

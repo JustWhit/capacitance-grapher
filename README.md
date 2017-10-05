@@ -1,1 +1,1 @@
-# data-grapher
+# capacitance-grapher

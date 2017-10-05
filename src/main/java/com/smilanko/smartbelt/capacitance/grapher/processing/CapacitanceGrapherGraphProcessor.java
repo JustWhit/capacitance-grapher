@@ -1,4 +1,4 @@
-package com.smilanko.smartbelt.data.grapher.processing;
+package com.smilanko.smartbelt.capacitance.grapher.processing;
 
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -10,15 +10,15 @@ import javax.imageio.ImageIO;
 import org.jfree.data.xy.XYSeries;
 import org.jfree.data.xy.XYSeriesCollection;
 
-import com.smilanko.smartbelt.data.grapher.common.DataGrapherLogParser;
-import com.smilanko.smartbelt.data.grapher.domain.BenchSet;
-import com.smilanko.smartbelt.data.grapher.domain.LiftPeakToRest;
-import com.smilanko.smartbelt.data.grapher.domain.LiftStartToPeak;
-import com.smilanko.smartbelt.data.grapher.graphs.ScatterPlotGraph;
+import com.smilanko.smartbelt.capacitance.grapher.common.CapacitanceGrapherLogParser;
+import com.smilanko.smartbelt.capacitance.grapher.domain.BenchSet;
+import com.smilanko.smartbelt.capacitance.grapher.domain.LiftPeakToRest;
+import com.smilanko.smartbelt.capacitance.grapher.domain.LiftStartToPeak;
+import com.smilanko.smartbelt.capacitance.grapher.graphs.ScatterPlotGraph;
 
-public class DataGrapherGraphProcessor {
+public class CapacitanceGrapherGraphProcessor {
 
-	private DataGrapherGraphProcessor() {
+	private CapacitanceGrapherGraphProcessor() {
 		// singleton
 	}
 
@@ -29,8 +29,8 @@ public class DataGrapherGraphProcessor {
 		final XYSeries liftStartToPeakSet = new XYSeries("Lift Start To Peak");
 		for (final LiftStartToPeak liftStartToPeak : benchSet.getLiftStartToPeakCollection()) {
 			for (final String benchDataLine : liftStartToPeak.getSetLineCollection()) {
-				final int sample = DataGrapherLogParser.retreiveSampleFromLogFile(benchDataLine);
-				final double capacitance = DataGrapherLogParser.retrieveCapacitanceFromLogFile(benchDataLine);
+				final int sample = CapacitanceGrapherLogParser.retreiveSampleFromLogFile(benchDataLine);
+				final double capacitance = CapacitanceGrapherLogParser.retrieveCapacitanceFromLogFile(benchDataLine);
 				liftStartToPeakSet.add(sample, capacitance);
 			}
 		}
@@ -40,8 +40,8 @@ public class DataGrapherGraphProcessor {
 		final XYSeries liftPeakToRestSet = new XYSeries("Lift Peak To Rest");
 		for (final LiftPeakToRest liftPeakToRest : benchSet.getLiftPeakToRestCollection()) {
 			for (final String benchDataLine : liftPeakToRest.getSetLineCollection()) {
-				final int sample = DataGrapherLogParser.retreiveSampleFromLogFile(benchDataLine);
-				final double capacitance = DataGrapherLogParser.retrieveCapacitanceFromLogFile(benchDataLine);
+				final int sample = CapacitanceGrapherLogParser.retreiveSampleFromLogFile(benchDataLine);
+				final double capacitance = CapacitanceGrapherLogParser.retrieveCapacitanceFromLogFile(benchDataLine);
 				liftPeakToRestSet.add(sample, capacitance);
 			}
 		}
@@ -54,8 +54,8 @@ public class DataGrapherGraphProcessor {
 		double minPf = Double.MAX_VALUE;
 		double maxPf = Double.MIN_VALUE;
 		for (final String benchDataLine : benchDataLines) {
-			final int sample = DataGrapherLogParser.retreiveSampleFromLogFile(benchDataLine);
-			final double capacitance = DataGrapherLogParser.retrieveCapacitanceFromLogFile(benchDataLine);
+			final int sample = CapacitanceGrapherLogParser.retreiveSampleFromLogFile(benchDataLine);
+			final double capacitance = CapacitanceGrapherLogParser.retrieveCapacitanceFromLogFile(benchDataLine);
 			completeSetData.add(sample, capacitance);
 			minPf = capacitance < minPf ? capacitance : minPf;
 			maxPf = capacitance > maxPf ? capacitance : maxPf;

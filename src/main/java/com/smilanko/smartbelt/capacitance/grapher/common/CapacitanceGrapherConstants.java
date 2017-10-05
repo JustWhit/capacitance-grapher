@@ -1,8 +1,8 @@
-package com.smilanko.smartbelt.data.grapher.common;
+package com.smilanko.smartbelt.capacitance.grapher.common;
 
-public class DataGrapherConstants {
+public class CapacitanceGrapherConstants {
 	
-	private DataGrapherConstants() {
+	private CapacitanceGrapherConstants() {
 		// singleton
 	}
 	
@@ -15,7 +15,7 @@ public class DataGrapherConstants {
 	public static final int IMAGE_WIDTH = 1000;
 	public static final int IMAGE_HEIGHT = 1000;
 	
-	public static final int GRAPH_CAPACITANCE_MAX_OFFSET = 100;
-	public static final int GRAPH_CAPACITANCE_MIN_OFFSET = 25;
+	public static final int GRAPH_CAPACITANCE_MAX_OFFSET = 25;
+	public static final int GRAPH_CAPACITANCE_MIN_OFFSET = 10;
 
 }

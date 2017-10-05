@@ -1,8 +1,8 @@
-package com.smilanko.smartbelt.data.grapher.common;
+package com.smilanko.smartbelt.capacitance.grapher.common;
 
-public class DataGrapherLogParser {
+public class CapacitanceGrapherLogParser {
 
-	private DataGrapherLogParser() {
+	private CapacitanceGrapherLogParser() {
 		// singleton
 	}
 

@@ -1,4 +1,4 @@
-package com.smilanko.smartbelt.data.grapher.fileutils;
+package com.smilanko.smartbelt.capacitance.grapher.fileutils;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -6,9 +6,9 @@ import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DataGrapherFileReader {
+public class CapacitanceGrapherFileReader {
 	
-	private DataGrapherFileReader() {
+	private CapacitanceGrapherFileReader() {
 		// singleton
 	}
 	
