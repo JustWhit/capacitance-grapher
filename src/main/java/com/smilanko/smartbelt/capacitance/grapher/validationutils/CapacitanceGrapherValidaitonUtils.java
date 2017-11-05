@@ -105,7 +105,7 @@ public class CapacitanceGrapherValidaitonUtils {
 		// ensure the order of samples
 		for (int i = 1; i < fileLines.size(); i++) {
 			final int sample = CapacitanceGrapherLogParser.retreiveSampleFromLogFile(fileLines.get(i));
-			if (sample != (i - 1)) {
+			if (sample != i) {
 				System.out.println("### the log file is not in order on sample line : " + (i - 1));
 				System.exit(-1);
 			}

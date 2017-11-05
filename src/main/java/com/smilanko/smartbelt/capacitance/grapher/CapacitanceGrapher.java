@@ -44,17 +44,17 @@ public class CapacitanceGrapher {
 
 	private static void checkFilesPresent(final String... args) {
 		if (args == null || args.length != 2) {
-			System.out.println("### expecting two files, in order: notes and *.log");
+			System.out.println("### expecting two files, in order: notes-* and *.csv");
 			System.exit(-1);
 		}
 	}
 
 	private static void checkFileOrder(final String... args) {
-		if (!args[0].endsWith(".log")) {
-			System.out.println("### the first argument needs to be the log file containig all of the data");
+		if (!args[0].endsWith(".csv")) {
+			System.out.println("### the first argument needs to be the log csv file containig all of the data");
 			System.exit(-1);
 		}
-		if (!args[1].endsWith("notes")) {
+		if (!args[1].startsWith("notes")) {
 			System.out.println("### the second argument needs to be the notes file");
 			System.exit(-1);
 		}
